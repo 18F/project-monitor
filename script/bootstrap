@@ -1,0 +1,52 @@
+#!/bin/sh
+
+set -e
+
+brew_install () {
+  if [[ -z $(brew ls --versions $1) ]]; then
+    echo "Installing $1 with Homebrew..."
+    brew install $1
+  fi
+}
+
+echo 'Updating Homebrew...'
+brew update
+
+brew_install postgresql
+
+if ps ax | grep -v grep | grep postgres > /dev/null
+then
+echo 'Postgres is already running, moving on...'
+else
+echo 'Starting Postgres...'
+postgres -D /usr/local/var/postgres&
+sleep 2
+fi
+
+if [[ -z $(psql -l | grep projectmonitor) ]]; then
+  echo 'Creating the project database and tables...'
+  createdb projectmonitor
+  psql projectmonitor -c 'create table statuses (guid text, success boolean DEFAULT false NOT NULL, url text, updated_at timestamp without time zone, valid_readme boolean DEFAULT false NOT NULL);'
+fi
+
+brew_install python
+
+if [[ -z $(which virtualenv) ]]; then
+  echo 'Installing Virtualenv...'
+  pip install virtualenv
+fi
+
+echo 'Setting up Virtualenv...'
+if [ ! -d venv-project-monitor ]; then
+  mkdir venv-project-monitor
+fi
+virtualenv venv-project-monitor
+source venv-project-monitor/bin/activate
+
+echo 'Installing project requirements...'
+pip install -r requirements.txt
+
+echo "All done!"
+echo "Run 'export DATABASE_URL="postgresql://localhost/projectmonitor"'"
+echo "Then run 'source venv-project-monitor/bin/activate'"
+echo "Then run 'python runserver.py' to start the app."

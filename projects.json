@@ -3,5 +3,10 @@
     "name": "Project Monitor",
     "guid": "18F-project-monitor",
     "travis url": "https://travis-ci.org/18F/project-monitor"
+  },
+  {
+    "name": "OpenFEC",
+    "guid": "18f-open-fec",
+    "travis url": "https://travis-ci.org/18F/openFEC"
   }
 ]
