@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Project Monitor</title>
+<link href="/static/styles.css" media="screen" rel="stylesheet" />
+<script src="/static/scripts.js"></script>
+<meta content='300' http-equiv='refresh'>
+<style lang="text/css">
+p.add-note { margin: 20px 0 0 30px }
+p.add-note, p.add-note * { color: white }
+</style>
+</head>
+<body class='dashboard'>
+<p class="add-note">
+    Add new projects at <a href="https://github.com/codeforamerica/projectmonitor#add-your-project">github.com/codeforamerica/projectmonitor</a>
+</p>
+<ul class="projects">
+    {% for project in projects %}
+        <li class="project {{project.state_class}}">
+            <h2><span class="centered-words">{{project.name}}</span></h2>
+            <p class="readme">
+                <span class="icon">&#128196;</span> Readme
+                <b>Valid</b>
+            </p>
+            <p class="builds">
+                <span class="icon">&#9874;</span> Built <span id="time-since-last-build">{{project.updated_at}}</span> ago
+            </p>
+            <ol class="builds">
+                {% for status in project.statuses %}
+                    <li class="build icon {{status.state_class}}">
+                        <a href="{{status.url}}" target="_blank">{{status.state_label}}</a>
+                    </li>
+                {% endfor %}
+            </ol>
+        </li>
+    {% endfor %}
+</ul>
+<script type="text/javascript">
+  $( document ).ready(function() {
+    $( "span[id*='time-since-last-build']" ).each(function(){
+      $(this).replaceWith(moment(new Date($(this).text())).fromNow());
+    })
+  });
+</script>
+</div>
+</body>
+</html>
+
