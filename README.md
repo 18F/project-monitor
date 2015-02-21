@@ -36,8 +36,9 @@ expression `^\w+(-\w+)*$`.
 
 In addition to adding your project here, you must also add a [webhook
 notification][webhook] to your project's `.travis.yml`. This will allow Travis
-to notify Project Monitor of build status.
-Here is portion of a valid [Travis configuration file][config]:
+to notify Project Monitor of the build status.
+Here is an example of a valid wehbook notification setting in a
+[Travis configuration file][config]:
 
 ```
 notifications:
