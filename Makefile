@@ -1,4 +1,4 @@
-ORG ?= 18F GSA
+ORG ?= 18F
 
 all: \
 	projects.json \
