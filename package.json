@@ -1,0 +1,27 @@
+{
+  "name": "project-monitor",
+  "version": "1.0.0",
+  "description": "a continuous integration monitor for large teams",
+  "main": "index.js",
+  "scripts": {
+    "test": "python -m projmon.test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/shawnbot/project-monitor.git"
+  },
+  "author": "18F",
+  "license": "CC0",
+  "bugs": {
+    "url": "https://github.com/shawnbot/project-monitor/issues"
+  },
+  "homepage": "https://github.com/shawnbot/project-monitor",
+  "dependencies": {
+    "async": "^0.9.0",
+    "beautify-css": "^1.0.0",
+    "colors": "^1.0.3",
+    "octonode": "^0.6.15",
+    "xtend": "^4.0.0",
+    "yargs": "^3.2.1"
+  }
+}
