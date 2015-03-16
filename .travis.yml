@@ -5,5 +5,5 @@ python:
 install:
   - pip install -r requirements.txt
 script: python -m projmon.test
-# notifications:
-#   webhooks: http://project-monitor.18f.us/projects/18F-project-monitor/status
+notifications:
+  webhooks: http://project-monitor.cf.18f.us/projects/18F-project-monitor/status
