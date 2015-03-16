@@ -8,5 +8,10 @@
     "name": "OpenFEC",
     "guid": "18f-open-fec",
     "travis url": "https://travis-ci.org/18F/openFEC"
+  },
+  {
+    "name": "Hub",
+    "guid": "hub",
+    "travis url": "https://travis-ci.org/18F/hub"
   }
 ]
