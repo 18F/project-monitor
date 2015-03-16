@@ -42,7 +42,7 @@ Here is an example of a valid wehbook notification setting in a
 
 ```
 notifications:
-  webhooks: http://project-monitor.18f.us/projects/18F-project-monitor/status
+  webhooks: http://project-monitor.cf.18f.us/projects/18F-project-monitor/status
 ```
 
 [webhook]: http://docs.travis-ci.com/user/notifications/#Webhook-notification
