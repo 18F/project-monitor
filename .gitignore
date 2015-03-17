@@ -1,3 +1,11 @@
 venv-projectmonitor/*
 venv-project-monitor/*
 venv-my-project/*
+vendor/*
+*.pyc
+local_settings.py
+
+# Cloud Foundry files
+runtime.txt
+.cfignore
+manifest.yml
