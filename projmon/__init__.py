@@ -29,7 +29,16 @@ def index():
     with open(PROJECTS_FILE) as file:
         projects = json.load(file)
 
-    with connect(os.environ['DATABASE_URL']) as conn:
+    result = urlparse(os.environ['DATABASE_URL'])
+    connection = connect(
+        database = result.path[1:],
+        user = result.username,
+        password = result.password,
+        host = result.hostname,
+        port = result.port
+    )
+
+    with connection as conn:
         with conn.cursor(cursor_factory=DictCursor) as db:
             db.execute('''SELECT guid, success, url, updated_at, valid_readme
                           FROM statuses WHERE updated_at IS NOT NULL
@@ -89,7 +98,16 @@ def post_status(guid):
         updated_at = info.get('finished_at', info['started_at'])
         valid_readme = None
 
-        with connect(os.environ['DATABASE_URL']) as conn:
+        result = urlparse(os.environ['DATABASE_URL'])
+        connection = connect(
+            database = result.path[1:],
+            user = result.username,
+            password = result.password,
+            host = result.hostname,
+            port = result.port
+        )
+
+        with connection as conn:
             with conn.cursor(cursor_factory=DictCursor) as db:
                 db.execute('''INSERT INTO statuses
                               (guid, success, url, updated_at, valid_readme)
