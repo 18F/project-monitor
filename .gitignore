@@ -1,3 +1,9 @@
+.*.sw?
+*.pyc
+.DS_Store
+.env
+npm-debug.log
+node_modules
 venv-projectmonitor/*
 venv-project-monitor/*
 venv-my-project/*
