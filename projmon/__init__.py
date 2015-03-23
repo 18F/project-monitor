@@ -79,7 +79,7 @@ def post_status(guid):
             for other_project in json.load(file):
                 if other_project['guid'] != guid:
                     continue
-                if build_url.startswith(other_project['travis_url']):
+                if build_url.startswith(other_project['travis url']):
                     project = other_project
 
         if not project:
@@ -130,7 +130,7 @@ def status():
 
     try:
         for project in projects:
-            _, host, path, _, _, _ = urlparse(project['travis_url'])
+            _, host, path, _, _, _ = urlparse(project['travis url'])
             api_url = 'https://api.{host}/repos{path}'.format(**locals())
             resp = get(api_url)
 
@@ -148,7 +148,7 @@ def status():
                         raise Exception(message.format(**kwargs))
 
             if resp.status_code != 200:
-                message = 'Missing {guid}: no {travis_url}'
+                message = 'Missing {guid}: no {travis url}'
                 raise Exception(message.format(**project))
     except Exception as e:
         status = str(e)
