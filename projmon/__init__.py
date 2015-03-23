@@ -53,11 +53,12 @@ def index():
             status['state_class'] = 'success' if status['success'] else 'failure error'
             status['state_label'] = u'✓' if status['success'] else u'❌'
 
-        project = [proj for proj in projects if proj['guid'] == guid][0]
-        project['updated_at'] = statuses[0]['updated_at'].strftime('%Y-%m-%dT%H:%M:%SZ')
-        project['valid_readme'] = statuses[0]['valid_readme']
-        project['state_class'] = statuses[0]['state_class']
-        project['statuses'] = statuses[:5]
+        project = [proj for proj in projects if proj['guid'] == guid]
+        if len(project) > 0:
+            project[0]['updated_at'] = statuses[0]['updated_at'].strftime('%Y-%m-%dT%H:%M:%SZ')
+            project[0]['valid_readme'] = statuses[0]['valid_readme']
+            project[0]['state_class'] = statuses[0]['state_class']
+            project[0]['statuses'] = statuses[:5]
 
     projects = [proj for proj in projects if 'updated_at' in proj]
     projects.sort(key=itemgetter('updated_at'), reverse=True)
@@ -78,7 +79,7 @@ def post_status(guid):
             for other_project in json.load(file):
                 if other_project['guid'] != guid:
                     continue
-                if build_url.startswith(other_project['travis url']):
+                if build_url.startswith(other_project['travis_url']):
                     project = other_project
 
         if not project:
@@ -129,7 +130,7 @@ def status():
 
     try:
         for project in projects:
-            _, host, path, _, _, _ = urlparse(project['travis url'])
+            _, host, path, _, _, _ = urlparse(project['travis_url'])
             api_url = 'https://api.{host}/repos{path}'.format(**locals())
             resp = get(api_url)
 
@@ -147,7 +148,7 @@ def status():
                         raise Exception(message.format(**kwargs))
 
             if resp.status_code != 200:
-                message = 'Missing {guid}: no {travis url}'
+                message = 'Missing {guid}: no {travis_url}'
                 raise Exception(message.format(**project))
     except Exception as e:
         status = str(e)
