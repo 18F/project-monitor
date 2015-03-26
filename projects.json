@@ -150,11 +150,6 @@
     "travis url": "https://travis-ci.org/18F/afsbirez"
   },
   {
-    "name": "Mario",
-    "guid": "Mario",
-    "travis url": "https://travis-ci.org/18F/Mario"
-  },
-  {
     "name": "myusa",
     "guid": "myusa",
     "travis url": "https://travis-ci.org/18F/myusa"

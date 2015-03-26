@@ -17,7 +17,7 @@ This project is forked from [codeforamerica/projectmonitor][projectmonitor].
 ## Add Your Project
 
 Edit [`projects.json`](projects.json) with your project information via a
-Github pull request. You will need three pieces of information:
+GitHub pull request. You will need three pieces of information:
 
 1. A project display name
 2. A unique identifier string
@@ -27,7 +27,7 @@ Here is an example:
 
     {
       "name": "Project Monitor",
-      "guid": "18F-project-monitor",
+      "guid": "project-monitor",
       "travis url": "https://travis-ci.org/18F/project-monitor"
     }
 
@@ -42,7 +42,7 @@ Here is an example of a valid wehbook notification setting in a
 
 ```
 notifications:
-  webhooks: http://project-monitor.cf.18f.us/projects/18F-project-monitor/status
+  webhooks: http://project-monitor.cf.18f.us/projects/project-monitor/status
 ```
 
 [webhook]: http://docs.travis-ci.com/user/notifications/#Webhook-notification
